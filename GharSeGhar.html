@@ -1,0 +1,3226 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GharSeGhar — homemade food, family recipes, and heartfelt meals across Odisha.">
+    <title>GharSeGhar | Homemade Food, From Our Home to Yours</title>
+
+    <!-- Google Fonts: new typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #176b45;
+            --green-dark: #0d3d2a;
+            --green-light: #e5f1e6;
+            --cream: #fbf8ef;
+            --yellow: #f5c76a;
+            --text: #23342b;
+            --muted: #738078;
+            --white: #fff;
+            --radius: 24px;
+            --shadow: 0 18px 55px rgba(22, 65, 43, .10);
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: auto;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: "Playfair Display", serif;
+        }
+
+        a { text-decoration: none; }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .section-padding { padding: 100px 0; }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 17px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 27px;
+            height: 2px;
+            background: var(--yellow);
+        }
+
+        .section-title {
+            font-size: clamp(35px, 4.4vw, 57px);
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+            font-weight: 600;
+        }
+
+        .section-copy {
+            color: var(--muted);
+            max-width: 560px;
+            line-height: 1.9;
+        }
+
+        .btn-main {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background: var(--green);
+            color: white;
+            border: 1px solid var(--green);
+            border-radius: 50px;
+            padding: 14px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: background .3s, color .3s, box-shadow .3s;
+        }
+
+        .btn-main:hover {
+            background: var(--green-dark);
+            color: white;
+            box-shadow: 0 10px 28px #176b4535;
+        }
+
+        .btn-outline-main {
+            background: transparent;
+            color: var(--green);
+            border: 1px solid #176b4550;
+        }
+
+        .btn-outline-main:hover { color: white; }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: grid;
+            place-items: center;
+            background: var(--green-dark);
+            color: white;
+        }
+
+        .preloader-inner { text-align: center; }
+
+        .preloader-logo {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 8vw, 68px);
+            font-weight: 700;
+        }
+
+        .preloader-logo span { color: var(--yellow); }
+
+        .loader-line {
+            height: 3px;
+            width: 180px;
+            background: #ffffff35;
+            margin: 18px auto 0;
+            overflow: hidden;
+        }
+
+        .loader-line span {
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: var(--yellow);
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        /* Navbar */
+        .navbar {
+            padding: 17px 0;
+            background: rgba(251, 248, 239, .92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid #1a57310c;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--green-dark);
+            font-family: "Playfair Display", serif;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: var(--green);
+            border-radius: 15px 15px 15px 4px;
+            font-size: 19px;
+            transform: rotate(-4deg);
+        }
+
+        .navbar-nav { gap: 7px; }
+
+        .navbar-nav .nav-link {
+            color: #4b5b50;
+            padding: 10px 12px !important;
+            font-size: 12px;
+            font-weight: 700;
+            transition: color .25s;
+        }
+
+        .navbar-nav .nav-link:hover { color: var(--green); }
+
+        .navbar-toggler { border: 0; box-shadow: none !important; }
+
+        /* Hero */
+        .hero {
+            min-height: 720px;
+            padding: 95px 0 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 10% 20%, #e5f1e6 0, transparent 30%),
+                radial-gradient(circle at 90% 85%, #f7e6bd 0, transparent 30%),
+                var(--cream);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border: 1px solid #176b451a;
+            border-radius: 50%;
+            left: -230px;
+            top: 15%;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #176b451a;
+            border-radius: 50%;
+            right: -140px;
+            bottom: 5%;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border-radius: 50px;
+            padding: 10px 15px;
+            color: var(--green);
+            background: #e5f1e6;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #43a66c;
+            box-shadow: 0 0 0 5px #43a66c20;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6.2vw, 83px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 em {
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .hero-description {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.9;
+            max-width: 480px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 34px;
+        }
+
+        .avatar-stack { display: flex; }
+
+        .avatar-stack img {
+            width: 39px;
+            height: 39px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--cream);
+            margin-left: -9px;
+        }
+
+        .avatar-stack img:first-child { margin-left: 0; }
+
+        .hero-meta small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .hero-meta strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .hero-visual {
+            min-height: 510px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-orbit {
+            position: absolute;
+            width: min(100%, 460px);
+            aspect-ratio: 1;
+            border: 1px dashed #176b4540;
+            border-radius: 50%;
+        }
+
+        .hero-image-frame {
+            position: relative;
+            width: min(88%, 400px);
+            height: 470px;
+            border-radius: 48% 48% 24px 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px #174b302c;
+            transform: rotate(2deg);
+        }
+
+        .hero-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-image-frame::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, #0a281b50, transparent 50%);
+        }
+
+        .hero-image-caption {
+            position: absolute;
+            bottom: 23px;
+            left: 23px;
+            z-index: 2;
+            color: white;
+        }
+
+        .hero-image-caption small {
+            display: block;
+            opacity: .85;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .hero-image-caption strong {
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+        }
+
+        .floating-card {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 14px 17px;
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .floating-card .float-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: #e5f1e6;
+            color: var(--green);
+            border-radius: 14px;
+        }
+
+        .floating-card strong { display: block; font-size: 12px; }
+        .floating-card small { display: block; color: var(--muted); font-size: 10px; }
+
+        .float-card-one { left: -4%; top: 18%; }
+        .float-card-two { right: -2%; bottom: 12%; }
+
+        .floating-leaf {
+            position: absolute;
+            z-index: 2;
+            color: #72a67c;
+            font-size: 30px;
+            opacity: .7;
+        }
+
+        .leaf-one { top: 4%; right: 17%; }
+        .leaf-two { bottom: 7%; left: 6%; font-size: 22px; }
+
+        /* Trust strip */
+        .trust-strip {
+            padding: 26px 0;
+            background: var(--green-dark);
+            color: white;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .trust-item i { color: var(--yellow); font-size: 18px; }
+
+        /* Categories */
+        .category-card {
+            position: relative;
+            height: 310px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            color: white;
+            isolation: isolate;
+            background: #ddd;
+            transform-style: preserve-3d;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s;
+        }
+
+        .category-card:hover img { transform: scale(1.1); }
+
+        .category-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(0deg, #071f15e8, #071f1510 75%);
+        }
+
+        .category-content {
+            position: absolute;
+            z-index: 1;
+            left: 23px;
+            right: 23px;
+            bottom: 23px;
+        }
+
+        .category-content small {
+            color: #f5d995;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .category-content h3 {
+            font-size: 27px;
+            margin: 8px 0;
+        }
+
+        .category-content p {
+            margin: 0;
+            color: #ffffffc9;
+            font-size: 11px;
+        }
+
+        .category-arrow {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            background: var(--yellow);
+            color: var(--green-dark);
+            border-radius: 14px 0 0 0;
+        }
+
+        /* Food menu */
+        .menu-section { background: #f2f5ec; }
+
+        .filter-btn {
+            padding: 10px 17px;
+            border-radius: 50px;
+            background: white;
+            border: 1px solid #dce5d8;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+        .food-card {
+            height: 100%;
+            overflow: hidden;
+            background: white;
+            border-radius: 22px;
+            border: 1px solid #e5eade;
+            transition: box-shadow .35s, border-color .35s;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .food-card:hover {
+            box-shadow: var(--shadow);
+            border-color: #c8dbc9;
+        }
+
+        .food-image {
+            position: relative;
+            height: 225px;
+            overflow: hidden;
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s;
+        }
+
+        .food-card:hover .food-image img { transform: scale(1.09); }
+
+        .food-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ffffffec;
+            color: var(--green);
+            padding: 7px 10px;
+            border-radius: 50px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .5px;
+        }
+
+        .food-heart {
+            position: absolute;
+            right: 14px;
+            top: 14px;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: #ffffffed;
+            color: #617167;
+            transition: .25s;
+        }
+
+        .food-heart.liked { color: #dc4761; }
+
+        .food-body { padding: 21px; }
+
+        .food-rating {
+            color: #b88420;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .food-rating i { margin-right: 3px; }
+
+        .food-body h3 {
+            font-size: 23px;
+            margin: 11px 0 8px;
+        }
+
+        .food-body p {
+            min-height: 42px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+            margin-bottom: 17px;
+        }
+
+        .food-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #edf0e9;
+            padding-top: 15px;
+        }
+
+        .food-price {
+            color: var(--green-dark);
+            font-weight: 800;
+            font-size: 21px;
+        }
+
+        .food-price small {
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 10px;
+        }
+
+        .add-btn {
+            width: 41px;
+            height: 41px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 14px;
+            background: var(--green);
+            color: white;
+            transition: .25s;
+        }
+
+        .add-btn:hover {
+            background: var(--yellow);
+            color: var(--green-dark);
+            transform: rotate(90deg);
+        }
+
+        .menu-card-hidden { display: none; }
+
+        /* Story */
+        .story-section { overflow: hidden; }
+
+        .story-visual {
+            position: relative;
+            padding: 0 35px 35px 0;
+        }
+
+        .story-main-image {
+            height: 540px;
+            width: 100%;
+            border-radius: 200px 200px 25px 25px;
+            overflow: hidden;
+        }
+
+        .story-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-small-image {
+            position: absolute;
+            width: 190px;
+            height: 220px;
+            right: 0;
+            bottom: 0;
+            border: 8px solid var(--cream);
+            border-radius: 100px 100px 20px 20px;
+            overflow: hidden;
+        }
+
+        .story-small-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-badge {
+            position: absolute;
+            top: 42px;
+            left: -16px;
+            width: 118px;
+            height: 118px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            border-radius: 50%;
+            background: var(--yellow);
+            color: var(--green-dark);
+            transform: rotate(-9deg);
+            box-shadow: var(--shadow);
+        }
+
+        .story-badge strong {
+            display: block;
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .story-badge small {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .story-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .story-feature-icon {
+            flex-shrink: 0;
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            background: var(--green-light);
+            color: var(--green);
+            border-radius: 15px;
+        }
+
+        .story-feature h4 {
+            font-family: "DM Sans", sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .story-feature p {
+            font-size: 11px;
+            line-height: 1.8;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* Quote */
+        .quote-section {
+            position: relative;
+            overflow: hidden;
+            padding: 85px 0;
+            background: var(--green-dark);
+            color: white;
+        }
+
+        .quote-section::before {
+            content: "“";
+            position: absolute;
+            left: 2%;
+            top: -110px;
+            font-family: "Playfair Display", serif;
+            font-size: 350px;
+            line-height: 1;
+            color: #ffffff09;
+        }
+
+        .quote-mark {
+            color: var(--yellow);
+            font-family: "Playfair Display", serif;
+            font-size: 75px;
+            line-height: .7;
+        }
+
+        .quote-text {
+            max-width: 850px;
+            margin: 25px auto;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(27px, 4vw, 46px);
+            line-height: 1.4;
+        }
+
+        .quote-author {
+            color: #d5e6d9;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* How it works */
+        
+/* HOW IT WORKS — corrected layout */
+.how-section {
+    padding: 100px 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.how-heading {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.how-title {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -1px;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.how-title em {
+    display: inline-block;
+    color: var(--green);
+    font-style: italic;
+    font-weight: 500;
+}
+
+.how-description {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    margin: 18px auto 0;
+    padding: 0 8px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.step-card {
+    height: 100%;
+    min-height: 335px;
+    padding: 25px 22px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: left;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(40, 118, 83, 0.35);
+    box-shadow: 0 18px 40px rgba(25, 60, 40, 0.09);
+}
+
+.step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.step-label {
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.step-number {
+    color: #cbd8cc;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 27px;
+    line-height: 1;
+}
+
+.step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 22px;
+    border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 22px;
+    transition: transform 0.35s ease;
+}
+
+.step-card:hover .step-icon {
+    transform: rotate(-8deg) scale(1.08);
+}
+
+.step-card h3 {
+    margin: 0 0 12px;
+    color: var(--ink);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.step-card > p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.step-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 23px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.step-footer i {
+    font-size: 12px;
+}
+
+.how-note {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    max-width: 700px;
+    margin: 78px auto 0;
+    padding: 15px 18px;
+    background: rgba(40, 118, 83, 0.06);
+    border-radius: 5px;
+    text-align: left;
+}
+
+.how-note i {
+    margin-top: 4px;
+    color: var(--green);
+}
+
+.how-note p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+    .how-section {
+        padding: 70px 0;
+    }
+
+    .how-title {
+        font-size: clamp(33px, 8vw, 46px);
+        line-height: 1.3;
+        letter-spacing: -0.5px;
+    }
+
+    .how-description {
+        max-width: 520px;
+        font-size: 13px;
+    }
+
+    .step-card {
+        min-height: 320px;
+        padding: 22px 18px;
+    }
+
+    .step-card h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .how-title {
+        font-size: clamp(30px, 8vw, 40px);
+    }
+
+    .how-description {
+        max-width: 100%;
+        padding: 0 8px;
+        line-height: 1.85;
+    }
+
+    .step-card {
+        min-height: auto;
+        padding: 23px;
+    }
+}
+
+
+        /* Benefits */
+        .benefits-section {
+            background: #e9f0e4;
+            overflow: hidden;
+        }
+
+        .benefit-card {
+            display: flex;
+            gap: 17px;
+            padding: 24px 0;
+            border-bottom: 1px solid #cfddcd;
+        }
+
+        .benefit-card:last-child { border-bottom: 0; }
+
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: white;
+            border-radius: 16px;
+            color: var(--green);
+            font-size: 19px;
+        }
+
+        .benefit-card h4 {
+            font-family: "DM Sans", sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .benefit-visual {
+            height: 590px;
+            position: relative;
+            border-radius: 220px 220px 25px 25px;
+            overflow: hidden;
+        }
+
+        .benefit-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .benefit-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, #0c2b1bbd, transparent 65%);
+        }
+
+        .benefit-caption {
+            position: absolute;
+            bottom: 27px;
+            left: 28px;
+            right: 28px;
+            color: white;
+        }
+
+        .benefit-caption h3 { font-size: 31px; }
+
+        .benefit-caption p {
+            font-size: 12px;
+            line-height: 1.8;
+            color: #ffffffd0;
+        }
+
+        /* Stories */
+        .journal-card {
+            height: 100%;
+            border-radius: 22px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e9ede3;
+        }
+
+        .journal-image {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .journal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s;
+        }
+
+        .journal-card:hover .journal-image img { transform: scale(1.08); }
+
+        .journal-body { padding: 24px; }
+
+        .journal-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            color: var(--green);
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .journal-body h3 {
+            font-size: 24px;
+            line-height: 1.3;
+            margin: 14px 0;
+        }
+
+        .journal-body p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.9;
+        }
+
+        .read-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* Odisha locations */
+        .locations-section { background: #f1f4eb; }
+
+        .location-card {
+            position: relative;
+            height: 310px;
+            overflow: hidden;
+            border-radius: 22px;
+            color: white;
+        }
+
+        .location-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s;
+        }
+
+        .location-card:hover img { transform: scale(1.09); }
+
+        .location-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, #071e15e8, transparent 75%);
+        }
+
+        .location-content {
+            position: absolute;
+            z-index: 2;
+            bottom: 23px;
+            left: 23px;
+            right: 23px;
+        }
+
+        .location-content small {
+            font-size: 10px;
+            color: var(--yellow);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .location-content h3 { font-size: 30px; margin: 7px 0; }
+
+        .location-content p {
+            font-size: 11px;
+            color: #ffffffce;
+            margin: 0;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr 1fr 1.15fr;
+            grid-template-rows: 210px 210px;
+            gap: 14px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .gallery-item:nth-child(1) { grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-row: span 2; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, #0b281c80, transparent 55%);
+            pointer-events: none;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            z-index: 1;
+            left: 17px;
+            right: 17px;
+            bottom: 16px;
+            color: white;
+            font-family: "Playfair Display", serif;
+            font-size: 18px;
+        }
+
+        /* Testimonials */
+        .testimonial-section { background: var(--green-dark); color: white; }
+
+        .testimonial-card {
+            background: #ffffff0a;
+            border: 1px solid #ffffff18;
+            border-radius: 23px;
+            padding: 28px;
+            height: 100%;
+        }
+
+        .testimonial-stars {
+            color: var(--yellow);
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+        .testimonial-card blockquote {
+            margin: 20px 0;
+            color: #e4eee7;
+            font-family: "Playfair Display", serif;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-person img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-person strong { display: block; font-size: 12px; }
+        .testimonial-person small { display: block; color: #b5c9bb; font-size: 10px; }
+
+        /* FAQ */
+        .accordion-item {
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid #dce5d9;
+        }
+
+        .accordion-button {
+            padding: 22px 0;
+            background: transparent !important;
+            color: var(--text) !important;
+            box-shadow: none !important;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .accordion-button::after {
+            background-size: 14px;
+        }
+
+        .accordion-body {
+            padding: 0 0 23px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        /* CTA */
+        .cta-section { padding: 30px 0 90px; }
+
+        .cta-box {
+            position: relative;
+            overflow: hidden;
+            padding: 70px 45px;
+            border-radius: 32px;
+            background: var(--green);
+            color: white;
+        }
+
+        .cta-box::before,
+        .cta-box::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ffffff1c;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-box::before { right: -80px; top: -140px; }
+        .cta-box::after { right: 100px; bottom: -240px; }
+
+        .cta-box h2 {
+            font-size: clamp(34px, 5vw, 55px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .cta-box p {
+            max-width: 520px;
+            color: #ffffffcf;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .btn-yellow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 50px;
+            padding: 15px 25px;
+            background: var(--yellow);
+            color: var(--green-dark);
+            font-size: 12px;
+            font-weight: 800;
+            border: 0;
+            transition: .25s;
+        }
+
+        .btn-yellow:hover {
+            background: white;
+            color: var(--green-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a2b1d;
+            color: white;
+            padding: 75px 0 25px;
+        }
+
+        .footer-brand { color: white; margin-bottom: 20px; }
+
+        .footer-copy {
+            max-width: 310px;
+            color: #bdcfc2;
+            font-size: 11px;
+            line-height: 1.9;
+        }
+
+        .footer-title {
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li { margin-bottom: 13px; }
+
+        .footer-links a {
+            color: #bdcfc2;
+            font-size: 11px;
+            transition: color .25s;
+        }
+
+        .footer-links a:hover { color: var(--yellow); }
+
+        .social-links {
+            display: flex;
+            gap: 9px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 37px;
+            height: 37px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: white;
+            border: 1px solid #ffffff30;
+            transition: .25s;
+        }
+
+        .social-links a:hover {
+            background: var(--yellow);
+            color: var(--green-dark);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-top: 1px solid #ffffff1c;
+            margin-top: 50px;
+            padding-top: 23px;
+            color: #b3c8b9;
+            font-size: 10px;
+        }
+
+        /* Floating cart */
+        .cart-fab {
+            position: fixed;
+            z-index: 900;
+            right: 24px;
+            bottom: 24px;
+            width: 58px;
+            height: 58px;
+            border: 0;
+            border-radius: 20px;
+            background: var(--green);
+            color: white;
+            font-size: 19px;
+            box-shadow: 0 12px 30px #143e2740;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            min-width: 23px;
+            height: 23px;
+            display: grid;
+            place-items: center;
+            padding: 0 5px;
+            background: var(--yellow);
+            color: var(--green-dark);
+            border: 2px solid var(--cream);
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .toast-message {
+            position: fixed;
+            z-index: 2000;
+            right: 24px;
+            bottom: 95px;
+            max-width: calc(100% - 48px);
+            padding: 14px 19px;
+            background: var(--green-dark);
+            color: white;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            font-size: 12px;
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+        }
+
+        /* Back to top */
+        .back-top {
+            position: fixed;
+            left: 22px;
+            bottom: 23px;
+            z-index: 800;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #176b4525;
+            border-radius: 14px;
+            background: white;
+            color: var(--green);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .section-padding { padding: 75px 0; }
+
+            .navbar-collapse {
+                padding: 15px 0;
+                background: var(--cream);
+            }
+
+            .hero { padding-top: 70px; }
+
+            .hero-visual {
+                margin-top: 45px;
+                min-height: 480px;
+            }
+
+            .float-card-one { left: 0; }
+            .float-card-two { right: 0; }
+
+            .steps-line { display: none; }
+
+            .benefit-visual { height: 470px; }
+        }
+
+        @media (max-width: 767px) {
+            .hero { min-height: auto; padding: 60px 0 50px; }
+
+            .hero h1 { letter-spacing: -1.5px; }
+
+            .hero-visual { min-height: 400px; }
+
+            .hero-image-frame {
+                height: 370px;
+                width: 82%;
+            }
+
+            .hero-orbit { width: 90%; }
+
+            .floating-card { padding: 10px; gap: 8px; }
+
+            .floating-card .float-icon {
+                width: 34px;
+                height: 34px;
+            }
+
+            .float-card-one { left: -1%; top: 12%; }
+            .float-card-two { right: -1%; bottom: 8%; }
+
+            .category-card { height: 280px; }
+
+            .story-main-image { height: 430px; }
+
+            .story-visual { margin-bottom: 35px; }
+
+            .story-badge { left: -5px; }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 170px);
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(4) { grid-row: auto; }
+
+            .gallery-item:nth-child(1) { grid-row: span 2; }
+            .gallery-item:nth-child(5) { grid-column: span 2; }
+
+            .cta-box { padding: 48px 25px; }
+
+            .trust-item { padding: 8px 0; justify-content: flex-start; }
+
+            .footer-bottom { flex-direction: column; }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 43px; }
+
+            .hero-image-frame { height: 335px; }
+
+            .hero-meta { gap: 10px; }
+
+            .gallery-grid {
+                grid-template-rows: repeat(3, 135px);
+                gap: 9px;
+            }
+
+            .gallery-caption { font-size: 15px; }
+
+            .section-title { letter-spacing: -.8px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">GharSe<span>Ghar</span></div>
+            <div>Homemade with love</div>
+            <div class="loader-line"><span id="loaderLine"></span></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <span class="brand-icon"><i class="fa-solid fa-leaf"></i></span>
+                GharSeGhar
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navMenu"
+                    aria-controls="navMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#categories">Explore Food</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu">Our Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#story">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <a href="#menu" class="btn-main">
+                    Explore meals <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="home">
+        <div class="container position-relative" style="z-index:2">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <div class="hero-kicker hero-animate">
+                        <span class="live-dot"></span>
+                        MADE AT HOME. SHARED WITH LOVE.
+                    </div>
+
+                    <h1 class="hero-animate">
+                        A little taste<br>
+                        of <em>home,</em><br>
+                        wherever you are.
+                    </h1>
+
+                    <p class="hero-description hero-animate">
+                        From traditional Odia recipes to everyday family favourites,
+                        discover the warmth of home-cooked food made with care,
+                        fresh ingredients and a whole lot of love.
+                    </p>
+
+                    <div class="hero-buttons hero-animate">
+                        <a href="#menu" class="btn-main">
+                            Discover the menu <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#story" class="btn-main btn-outline-main">
+                            <i class="fa-regular fa-circle-play"></i> Our story
+                        </a>
+                    </div>
+
+                    <div class="hero-meta hero-animate">
+                        <div class="avatar-stack">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=100&q=80" alt="Home cook">
+                            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=100&q=80" alt="Family cooking">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80" alt="Community member">
+                        </div>
+                        <div>
+                            <strong>Rooted in family, made for family</strong>
+                            <small>Celebrating home kitchens across Odisha</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="hero-visual">
+                        <div class="hero-orbit"></div>
+
+                        <i class="fa-solid fa-leaf floating-leaf leaf-one"></i>
+                        <i class="fa-solid fa-seedling floating-leaf leaf-two"></i>
+
+                        <div class="hero-image-frame hero-photo">
+                            <img
+                                src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1100&q=85"
+                                alt="Fresh homemade meal served at home">
+                            <div class="hero-image-caption">
+                                <small>GOOD FOOD. GOOD MEMORIES.</small>
+                                <strong>Just like home.</strong>
+                            </div>
+                        </div>
+
+                        <div class="floating-card float-card-one">
+                            <div class="float-icon"><i class="fa-solid fa-heart"></i></div>
+                            <div>
+                                <strong>Made with love</strong>
+                                <small>Family recipes</small>
+                            </div>
+                        </div>
+
+                        <div class="floating-card float-card-two">
+                            <div class="float-icon"><i class="fa-solid fa-bowl-food"></i></div>
+                            <div>
+                                <strong>Freshly prepared</strong>
+                                <small>Home-style goodness</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust strip -->
+    <section class="trust-strip">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-6 col-lg-3">
+                    <div class="trust-item"><i class="fa-solid fa-house"></i> From family kitchens</div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="trust-item"><i class="fa-solid fa-carrot"></i> Fresh ingredients</div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="trust-item"><i class="fa-solid fa-hand-holding-heart"></i> Recipes with a story</div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="trust-item"><i class="fa-solid fa-location-dot"></i> Proudly Odisha-inspired</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section-padding" id="categories">
+        <div class="container">
+            <div class="row align-items-end mb-5">
+                <div class="col-lg-7 reveal">
+                    <div class="section-label">A little something for everyone</div>
+                    <h2 class="section-title">Find your kind<br>of <em>comfort food.</em></h2>
+                </div>
+                <div class="col-lg-5 reveal">
+                    <p class="section-copy mt-3 mt-lg-0 mb-0">
+                        From the flavours you grew up with to dishes you have
+                        always wanted to try, every meal begins with a little
+                        inspiration from home.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <a href="#menu" class="category-card tilt-card d-block">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80" alt="Indian home-style thali" loading="lazy">
+                        <div class="category-content">
+                            <small>Everyday favourite</small>
+                            <h3>Home Thalis</h3>
+                            <p>Simple, wholesome and satisfying.</p>
+                        </div>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </a>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="#menu" class="category-card tilt-card d-block">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80" alt="Freshly made flatbread and toppings" loading="lazy">
+                        <div class="category-content">
+                            <small>Family favourites</small>
+                            <h3>Special Meals</h3>
+                            <p>Something lovely for a special day.</p>
+                        </div>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </a>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="#menu" class="category-card tilt-card d-block">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80" alt="Fresh vegetable salad" loading="lazy">
+                        <div class="category-content">
+                            <small>Fresh and light</small>
+                            <h3>Veg Delights</h3>
+                            <p>Seasonal goodness in every bite.</p>
+                        </div>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </a>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="#menu" class="category-card tilt-card d-block">
+                        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Homemade dessert with fruit" loading="lazy">
+                        <div class="category-content">
+                            <small>A sweet ending</small>
+                            <h3>Sweet Treats</h3>
+                            <p>Little bites of happiness.</p>
+                        </div>
+                        <span class="category-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="section-padding menu-section" id="menu">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <div class="section-label">A taste of home</div>
+                <h2 class="section-title">Made today, loved <em>always.</em></h2>
+                <p class="section-copy mx-auto mt-3">
+                    Explore a sample menu inspired by the meals we love to share.
+                    These sample dishes demonstrate the website design.
+                </p>
+            </div>
+
+            <div class="d-flex justify-content-center gap-2 flex-wrap mb-5 reveal" id="foodFilters">
+                <button class="filter-btn active" data-filter="all">All dishes</button>
+                <button class="filter-btn" data-filter="veg">Vegetarian</button>
+                <button class="filter-btn" data-filter="odia">Odia-inspired</button>
+                <button class="filter-btn" data-filter="sweet">Sweet treats</button>
+            </div>
+
+            <div class="row g-4" id="foodGrid">
+                <!-- Dish 1 -->
+                <div class="col-md-6 col-lg-4 food-item" data-category="veg odia">
+                    <article class="food-card tilt-card">
+                        <div class="food-image">
+                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=750&q=85" alt="Indian vegetarian thali" loading="lazy">
+                            <span class="food-tag">HOUSE FAVOURITE</span>
+                            <button class="food-heart" aria-label="Favourite vegetable thali"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="food-body">
+                            <div class="food-rating"><i class="fa-solid fa-star"></i> 4.9 <span class="text-muted fw-normal"> · Sample rating</span></div>
+                            <h3>Ghar Ka Thali</h3>
+                            <p>A comforting spread inspired by everyday home-cooked Indian meals.</p>
+                            <div class="food-bottom">
+                                <div class="food-price">₹149 <small>/ plate</small></div>
+                                <button class="add-btn" data-name="Ghar Ka Thali" aria-label="Add Ghar Ka Thali"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Dish 2 -->
+                <div class="col-md-6 col-lg-4 food-item" data-category="veg odia">
+                    <article class="food-card tilt-card">
+                        <div class="food-image">
+                            <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=750&q=85" alt="Indian curry and rice" loading="lazy">
+                            <span class="food-tag">COMFORT CLASSIC</span>
+                            <button class="food-heart" aria-label="Favourite curry meal"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="food-body">
+                            <div class="food-rating"><i class="fa-solid fa-star"></i> 4.8 <span class="text-muted fw-normal"> · Sample rating</span></div>
+                            <h3>Dalma & Rice</h3>
+                            <p>A sample menu idea inspired by Odisha's much-loved dalma tradition.</p>
+                            <div class="food-bottom">
+                                <div class="food-price">₹129 <small>/ plate</small></div>
+                                <button class="add-btn" data-name="Dalma & Rice" aria-label="Add Dalma and Rice"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Dish 3 -->
+                <div class="col-md-6 col-lg-4 food-item" data-category="veg">
+                    <article class="food-card tilt-card">
+                        <div class="food-image">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=750&q=85" alt="Fresh vegetable bowl" loading="lazy">
+                            <span class="food-tag">FRESH PICK</span>
+                            <button class="food-heart" aria-label="Favourite vegetable bowl"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="food-body">
+                            <div class="food-rating"><i class="fa-solid fa-star"></i> 4.7 <span class="text-muted fw-normal"> · Sample rating</span></div>
+                            <h3>Garden Fresh Bowl</h3>
+                            <p>A colourful bowl of fresh ingredients for a lighter meal.</p>
+                            <div class="food-bottom">
+                                <div class="food-price">₹119 <small>/ bowl</small></div>
+                                <button class="add-btn" data-name="Garden Fresh Bowl" aria-label="Add Garden Fresh Bowl"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Dish 4 -->
+                <div class="col-md-6 col-lg-4 food-item" data-category="odia">
+                    <article class="food-card tilt-card">
+                        <div class="food-image">
+                            <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=750&q=85" alt="Rice and curry home meal" loading="lazy">
+                            <span class="food-tag">REGIONAL FLAVOUR</span>
+                            <button class="food-heart" aria-label="Favourite rice meal"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="food-body">
+                            <div class="food-rating"><i class="fa-solid fa-star"></i> 4.8 <span class="text-muted fw-normal"> · Sample rating</span></div>
+                            <h3>Rice & Seasonal Curry</h3>
+                            <p>A simple home-style combination inspired by seasonal cooking.</p>
+                            <div class="food-bottom">
+                                <div class="food-price">₹139 <small>/ plate</small></div>
+                                <button class="add-btn" data-name="Rice & Seasonal Curry" aria-label="Add Rice and Seasonal Curry"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Dish 5 -->
+                <div class="col-md-6 col-lg-4 food-item" data-category="sweet">
+                    <article class="food-card tilt-card">
+                        <div class="food-image">
+                            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=750&q=85" alt="Sweet homemade dessert" loading="lazy">
+                            <span class="food-tag">SWEET MOMENT</span>
+                            <button class="food-heart" aria-label="Favourite dessert"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="food-body">
+                            <div class="food-rating"><i class="fa-solid fa-star"></i> 4.9 <span class="text-muted fw-normal"> · Sample rating</span></div>
+                            <h3>Homemade Sweet Bowl</h3>
+                            <p>A sweet finish for those moments when you want a little treat.</p>
+                            <div class="food-bottom">
+                                <div class="food-price">₹89 <small>/ bowl</small></div>
+                                <button class="add-btn" data-name="Homemade Sweet Bowl" aria-label="Add Homemade Sweet Bowl"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Dish 6 -->
+                <div class="col-md-6 col-lg-4 food-item" data-category="veg">
+                    <article class="food-card tilt-card">
+                        <div class="food-image">
+                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=750&q=85" alt="Traditional home-style meal" loading="lazy">
+                            <span class="food-tag">FAMILY COMBO</span>
+                            <button class="food-heart" aria-label="Favourite family combo"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="food-body">
+                            <div class="food-rating"><i class="fa-solid fa-star"></i> 4.8 <span class="text-muted fw-normal"> · Sample rating</span></div>
+                            <h3>Family Lunch Combo</h3>
+                            <p>A sample meal combination designed for a relaxed family lunch.</p>
+                            <div class="food-bottom">
+                                <div class="food-price">₹199 <small>/ combo</small></div>
+                                <button class="add-btn" data-name="Family Lunch Combo" aria-label="Add Family Lunch Combo"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="text-center mt-5 reveal">
+                <p class="text-muted small mb-3">Prices and ratings above are illustrative demo content.</p>
+                <a href="#how" class="btn-main">How it works <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our story -->
+    <section class="section-padding story-section" id="story">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="story-visual">
+                        <div class="story-main-image parallax-image">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=85" alt="Cooking a meal in a home kitchen" loading="lazy">
+                        </div>
+
+                        <div class="story-small-image">
+                            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=500&q=85" alt="Preparing food together" loading="lazy">
+                        </div>
+
+                        <div class="story-badge">
+                            <div>
+                                <strong>100%</strong>
+                                <small>HOME-INSPIRED</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="reveal">
+                        <div class="section-label">More than just food</div>
+                        <h2 class="section-title">Every recipe has<br>a <em>story to tell.</em></h2>
+                        <p class="section-copy mt-4">
+                            Remember the smell of a favourite dish cooking in the
+                            kitchen? The extra serving a loved one always offers?
+                            Or the recipe that has travelled from one generation
+                            to the next?
+                        </p>
+                        <p class="section-copy">
+                            GharSeGhar is a concept built around those feelings:
+                            celebrating the care, culture and connection that
+                            home-cooked meals bring to families.
+                        </p>
+                    </div>
+
+                    <div class="story-feature reveal">
+                        <div class="story-feature-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <div>
+                            <h4>Recipes with roots</h4>
+                            <p>Celebrate familiar family dishes and regional cooking traditions.</p>
+                        </div>
+                    </div>
+
+                    <div class="story-feature reveal">
+                        <div class="story-feature-icon"><i class="fa-solid fa-people-roof"></i></div>
+                        <div>
+                            <h4>Family comes first</h4>
+                            <p>Designed around family connections rather than an open public marketplace.</p>
+                        </div>
+                    </div>
+
+                    <div class="story-feature reveal">
+                        <div class="story-feature-icon"><i class="fa-solid fa-seedling"></i></div>
+                        <div>
+                            <h4>Care in every meal</h4>
+                            <p>Encourage thoughtful cooking, clear food details and responsible sharing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="quote-section text-center">
+        <div class="container position-relative">
+            <div class="quote-mark reveal">“</div>
+            <p class="quote-text quote-reveal">
+                Food tastes different when someone makes it especially for you.
+                That is the beautiful feeling we want every family meal to carry.
+            </p>
+            <div class="quote-author reveal">The GharSeGhar philosophy</div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+    <div class="container">
+
+        <div class="how-heading reveal">
+            <span class="section-label">SIMPLE BY DESIGN</span>
+
+            <h2 class="section-title how-title">
+                From one home
+                <br>
+                <em>to another.</em>
+            </h2>
+
+            <p class="section-copy how-description">
+                A simple way for families to share homemade meals.
+                Follow these four steps to understand how the GharSeGhar
+                family food-sharing concept is designed to work.
+            </p>
+        </div>
+
+        <div class="row g-4 mt-4">
+
+            <!-- STEP 01 -->
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="step-card">
+                    <div class="step-top">
+                        <span class="step-label">STEP 01</span>
+                        <span class="step-number">01</span>
+                    </div>
+
+                    <div class="step-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <h3>Connect</h3>
+
+                    <p>
+                        Family members join through an invitation and
+                        verified account, creating a private family
+                        network for sharing homemade food.
+                    </p>
+
+                    <div class="step-footer">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Family connections</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 02 -->
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="step-card">
+                    <div class="step-top">
+                        <span class="step-label">STEP 02</span>
+                        <span class="step-number">02</span>
+                    </div>
+
+                    <div class="step-icon">
+                        <i class="fa-solid fa-bowl-food"></i>
+                    </div>
+
+                    <h3>Choose a Meal</h3>
+
+                    <p>
+                        Explore the homemade meals shared by connected
+                        family members, including ingredients, portions
+                        and preparation details.
+                    </p>
+
+                    <div class="step-footer">
+                        <i class="fa-solid fa-utensils"></i>
+                        <span>Homemade goodness</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 03 -->
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="step-card">
+                    <div class="step-top">
+                        <span class="step-label">STEP 03</span>
+                        <span class="step-number">03</span>
+                    </div>
+
+                    <div class="step-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+
+                    <h3>Arrange Delivery</h3>
+
+                    <p>
+                        Coordinate a suitable delivery time and address.
+                        A future version could let an approved delivery
+                        partner handle the family meal.
+                    </p>
+
+                    <div class="step-footer">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Door-to-door concept</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 04 -->
+            <div class="col-12 col-sm-6 col-lg-3 reveal">
+                <div class="step-card">
+                    <div class="step-top">
+                        <span class="step-label">STEP 04</span>
+                        <span class="step-number">04</span>
+                    </div>
+
+                    <div class="step-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <h3>Share Happiness</h3>
+
+                    <p>
+                        Receive a meal prepared with care, enjoy familiar
+                        flavours and stay connected with the family
+                        members who matter most.
+                    </p>
+
+                    <div class="step-footer">
+                        <i class="fa-solid fa-house-heart"></i>
+                        <span>A little taste of home</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="how-note reveal">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>
+                These steps describe the proposed GharSeGhar experience.
+                Online ordering, account verification and delivery
+                assignment require backend implementation.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+    <!-- Benefits -->
+    <section class="section-padding benefits-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="reveal">
+                        <div class="section-label">Why GharSeGhar</div>
+                        <h2 class="section-title">A little more<br><em>heart on your plate.</em></h2>
+                        <p class="section-copy mt-3">
+                            Good food can bring people closer. The goal is to
+                            make family food-sharing easier while respecting
+                            everyone's preferences, privacy and time.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card reveal">
+                        <div class="benefit-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                        <div>
+                            <h4>Family-first experience</h4>
+                            <p>A concept designed for invited family members, not unrestricted stranger-to-stranger ordering.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card reveal">
+                        <div class="benefit-icon"><i class="fa-solid fa-leaf"></i></div>
+                        <div>
+                            <h4>Homemade inspiration</h4>
+                            <p>Celebrate home recipes, seasonal ingredients and regional flavours.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card reveal">
+                        <div class="benefit-icon"><i class="fa-solid fa-route"></i></div>
+                        <div>
+                            <h4>Thoughtful handoffs</h4>
+                            <p>Make room for clear pickup arrangements and a potential delivery workflow.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card reveal">
+                        <div class="benefit-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                        <div>
+                            <h4>Designed with trust in mind</h4>
+                            <p>Plan for family verification, privacy controls and transparent meal information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="benefit-visual parallax-image reveal">
+                        <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1000&q=85" alt="A home cook preparing a meal" loading="lazy">
+                        <div class="benefit-overlay"></div>
+                        <div class="benefit-caption">
+                            <h3>Made in a home.<br>Shared from the heart.</h3>
+                            <p>Because some of the best meals are the ones that remind us of home.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journal -->
+    <section class="section-padding" id="journal">
+        <div class="container">
+            <div class="row align-items-end mb-5">
+                <div class="col-lg-8 reveal">
+                    <div class="section-label">Kitchen notes</div>
+                    <h2 class="section-title">Stories from the<br><em>heart of the home.</em></h2>
+                </div>
+                <div class="col-lg-4 reveal">
+                    <p class="section-copy mt-3 mb-0">Little reminders of why we cook, what we share and how food keeps traditions alive.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <article class="journal-card reveal">
+                        <div class="journal-image">
+                            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=85" alt="A home kitchen at work" loading="lazy">
+                        </div>
+                        <div class="journal-body">
+                            <div class="journal-meta"><span>Family traditions</span><span>01</span></div>
+                            <h3>The recipes we inherit without a cookbook</h3>
+                            <p>Some recipes live in our memories: a pinch of spice, a familiar aroma and the hands that taught us.</p>
+                            <a href="#story" class="read-link">Explore our story <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <article class="journal-card reveal">
+                        <div class="journal-image">
+                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85" alt="A shared meal on the table" loading="lazy">
+                        </div>
+                        <div class="journal-body">
+                            <div class="journal-meta"><span>Everyday cooking</span><span>02</span></div>
+                            <h3>Why a simple lunch can mean everything</h3>
+                            <p>Everyday food has its own magic: familiar flavours, unhurried conversations and a place at the table.</p>
+                            <a href="#menu" class="read-link">Explore food <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <article class="journal-card reveal">
+                        <div class="journal-image">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=85" alt="Fresh ingredients for cooking" loading="lazy">
+                        </div>
+                        <div class="journal-body">
+                            <div class="journal-meta"><span>Fresh ingredients</span><span>03</span></div>
+                            <h3>Let the season inspire your kitchen</h3>
+                            <p>Cooking with seasonal ingredients can bring variety, colour and a closer connection to local food.</p>
+                            <a href="#benefits" class="read-link">Our values <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Odisha -->
+    <section class="section-padding locations-section" id="odisha">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <div class="section-label">Our roots</div>
+                <h2 class="section-title">Inspired by <em>Odisha.</em></h2>
+                <p class="section-copy mx-auto mt-3">
+                    From bustling cities to coastal towns, Odisha has a rich
+                    food culture and family traditions worth celebrating.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <article class="location-card reveal">
+                        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=700&q=85" alt="Temple architecture in Odisha" loading="lazy">
+                        <div class="location-content">
+                            <small>Temple heritage</small>
+                            <h3>Bhubaneswar</h3>
+                            <p>A city with deep roots and modern energy.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <article class="location-card reveal">
+                        <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=700&q=85" alt="Coastal waves and shoreline" loading="lazy">
+                        <div class="location-content">
+                            <small>Coastal charm</small>
+                            <h3>Puri</h3>
+                            <p>Coastal culture and beloved traditions.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <article class="location-card reveal">
+                        <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=700&q=85" alt="Water and coastal landscape" loading="lazy">
+                        <div class="location-content">
+                            <small>River and sea</small>
+                            <h3>Cuttack</h3>
+                            <p>Historic streets and a lively food culture.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <article class="location-card reveal">
+                        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=700&q=85" alt="Green countryside and hills" loading="lazy">
+                        <div class="location-content">
+                            <small>Green landscapes</small>
+                            <h3>Across Odisha</h3>
+                            <p>Celebrating flavours from many communities.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <p class="text-center text-muted small mt-4 mb-0">These locations illustrate the concept's regional inspiration, not confirmed service coverage.</p>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section-padding" id="gallery">
+        <div class="container">
+            <div class="row align-items-end mb-5">
+                <div class="col-md-8 reveal">
+                    <div class="section-label">A feast for the eyes</div>
+                    <h2 class="section-title">Little moments.<br><em>Beautiful memories.</em></h2>
+                </div>
+                <div class="col-md-4 reveal">
+                    <p class="section-copy mt-3 mb-0">The table, the ingredients, the hands that cook and the people who make every meal special.</p>
+                </div>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=85" alt="Cooking in a home kitchen" loading="lazy">
+                    <div class="gallery-caption">Kitchen stories</div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=85" alt="Fresh vegetables" loading="lazy">
+                    <div class="gallery-caption">Fresh beginnings</div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=85" alt="A sweet dessert" loading="lazy">
+                    <div class="gallery-caption">Sweet moments</div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85" alt="A delicious home-style meal" loading="lazy">
+                    <div class="gallery-caption">Made with love</div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=85" alt="Preparing food at home" loading="lazy">
+                    <div class="gallery-caption">Together at home</div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=85" alt="Freshly prepared food" loading="lazy">
+                    <div class="gallery-caption">Share the joy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-padding testimonial-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <div class="section-label" style="color:#e4c977">The feeling of home</div>
+                <h2 class="section-title">Food is better<br>when <em>we share.</em></h2>
+                <p class="mx-auto mt-3" style="max-width:550px;color:#c1d3c5;font-size:13px;line-height:1.9">
+                    Sample testimonial cards show how customer feedback could appear once the service is operating.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <article class="testimonial-card reveal">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <blockquote>“The best meals are the ones that remind us of our childhood and the people we love.”</blockquote>
+                        <div class="testimonial-person">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Illustrative customer portrait" loading="lazy">
+                            <div><strong>Sample family member</strong><small>Illustrative testimonial</small></div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <article class="testimonial-card reveal">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <blockquote>“A family food-sharing idea that puts the people and the traditions behind the meal first.”</blockquote>
+                        <div class="testimonial-person">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Illustrative customer portrait" loading="lazy">
+                            <div><strong>Sample home cook</strong><small>Illustrative testimonial</small></div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <article class="testimonial-card reveal">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <blockquote>“A lovely concept for bringing familiar recipes and family connections closer together.”</blockquote>
+                        <div class="testimonial-person">
+                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=80" alt="Illustrative customer portrait" loading="lazy">
+                            <div><strong>Sample community member</strong><small>Illustrative testimonial</small></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-padding" id="faq">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 reveal">
+                    <div class="section-label">Questions, answered</div>
+                    <h2 class="section-title">A few things<br>you might <em>wonder.</em></h2>
+                    <p class="section-copy mt-4">
+                        Here are a few details about the GharSeGhar concept.
+                        Live account creation, family verification and delivery
+                        need to be built before real orders can be accepted.
+                    </p>
+                    <a href="#contact" class="btn-main mt-3">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="col-lg-7 reveal">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true">
+                                    What is GharSeGhar?
+                                </button>
+                            </h3>
+                            <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    GharSeGhar is a proposed family-only food-sharing platform inspired by homemade meals and family recipes, with an initial focus on Odisha.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">
+                                    Can anyone order food from anyone?
+                                </button>
+                            </h3>
+                            <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The intended model is family-only, not an open public marketplace. Family invitations, membership verification and privacy controls would need to be implemented in the live application.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">
+                                    Will home delivery be available?
+                                </button>
+                            </h3>
+                            <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    A delivery-partner workflow is part of the proposed concept. Actual delivery coverage, assignment, tracking and fees depend on a working backend and local operations.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">
+                                    Can I order through this demo website?
+                                </button>
+                            </h3>
+                            <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Not yet. The menu buttons only demonstrate front-end interactions. Real ordering requires a backend, database, user accounts, order management and a configured payment or cash-on-delivery workflow.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive">
+                                    Are the displayed prices and reviews real?
+                                </button>
+                            </h3>
+                            <div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    No. Prices, ratings, and testimonials on this sample website are illustrative content for the design. Replace them with verified information before publishing.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-box reveal">
+                <div class="row align-items-center position-relative" style="z-index:1">
+                    <div class="col-lg-8">
+                        <div class="section-label" style="color:#f5d995">Bring your family closer</div>
+                        <h2>Good food travels.<br>Love stays <em>at home.</em></h2>
+                        <p>
+                            Imagine a place where family recipes, thoughtful cooking
+                            and shared meals come together. GharSeGhar starts with
+                            that simple idea.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                        <a href="#home" class="btn-yellow">
+                            Back to the beginning <i class="fa-solid fa-arrow-up"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand footer-brand" href="#home">
+                        <span class="brand-icon"><i class="fa-solid fa-leaf"></i></span>
+                        GharSeGhar
+                    </a>
+                    <p class="footer-copy">
+                        A family-first food-sharing concept celebrating homemade
+                        meals, cherished recipes and the warmth of Odisha's kitchens.
+                    </p>
+                    <div class="social-links">
+                        <a href="#contact" aria-label="Facebook placeholder"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#contact" aria-label="Instagram placeholder"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#contact" aria-label="YouTube placeholder"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h4 class="footer-title">Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#menu">Sample menu</a></li>
+                        <li><a href="#story">Our story</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h4 class="footer-title">Learn more</h4>
+                    <ul class="footer-links">
+                        <li><a href="#how">How it works</a></li>
+                        <li><a href="#odisha">Odisha</a></li>
+                        <li><a href="#journal">Kitchen notes</a></li>
+                        <li><a href="#faq">FAQs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <h4 class="footer-title">A note from our kitchen</h4>
+                    <p class="footer-copy">
+                        This is a front-end demonstration. Account registration,
+                        family invitations, payments, food ordering and delivery
+                        are not connected to a live service.
+                    </p>
+                    <a href="#faq" class="read-link" style="color:var(--yellow)">Read FAQs <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© <span id="currentYear"></span> GharSeGhar. Made with love.</span>
+                <span>Homemade food · Family connections · Odisha inspiration</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating cart demo -->
+    <button class="cart-fab" id="cartButton" aria-label="Show demo cart">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <div class="toast-message" id="toastMessage" role="status" aria-live="polite"></div>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- GSAP + plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            "use strict";
+
+            const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const preloader = document.getElementById("preloader");
+            const toast = document.getElementById("toastMessage");
+            const cartCount = document.getElementById("cartCount");
+            const backTop = document.getElementById("backTop");
+            const cartButton = document.getElementById("cartButton");
+
+            let cartItems = [];
+            let toastTimer = null;
+
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+            /* --------------------------------------------------
+               1. Preloader
+            -------------------------------------------------- */
+            function hidePreloader() {
+                if (!preloader) return;
+
+                if (window.gsap && !reduceMotion) {
+                    gsap.to("#loaderLine", {
+                        scaleX: 1,
+                        duration: 0.7,
+                        ease: "power2.inOut"
+                    });
+
+                    gsap.to(preloader, {
+                        autoAlpha: 0,
+                        duration: 0.7,
+                        delay: 0.65,
+                        ease: "power2.inOut",
+                        onComplete: function () {
+                            preloader.style.display = "none";
+                            startPageAnimations();
+                        }
+                    });
+                } else {
+                    preloader.style.display = "none";
+                    startPageAnimations();
+                }
+            }
+
+            /* --------------------------------------------------
+               2. GSAP page animations
+            -------------------------------------------------- */
+            let animationsStarted = false;
+
+            function startPageAnimations() {
+                if (animationsStarted) return;
+                animationsStarted = true;
+
+                if (!window.gsap || reduceMotion) {
+                    document.querySelectorAll(".reveal, .hero-animate").forEach(function (el) {
+                        el.style.opacity = "1";
+                        el.style.visibility = "visible";
+                        el.style.transform = "none";
+                    });
+                    return;
+                }
+
+                gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+                // Hero text enters in sequence.
+                gsap.from(".hero-animate", {
+                    y: 35,
+                    opacity: 0,
+                    duration: 0.9,
+                    stagger: 0.13,
+                    ease: "power3.out",
+                    clearProps: "all"
+                });
+
+                // Main hero image reveal and gentle zoom.
+                gsap.from(".hero-photo", {
+                    scale: 0.88,
+                    opacity: 0,
+                    rotation: 7,
+                    duration: 1.3,
+                    delay: 0.25,
+                    ease: "power3.out"
+                });
+
+                gsap.from(".hero-orbit", {
+                    scale: 0.7,
+                    opacity: 0,
+                    duration: 1.3,
+                    delay: 0.4,
+                    ease: "power2.out"
+                });
+
+                // Floating hero badges.
+                gsap.from(".floating-card", {
+                    y: 35,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.18,
+                    delay: 0.7,
+                    ease: "back.out(1.5)"
+                });
+
+                gsap.to(".float-card-one", {
+                    y: -12,
+                    duration: 2.2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+
+                gsap.to(".float-card-two", {
+                    y: 11,
+                    duration: 2.7,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+
+                gsap.to(".floating-leaf", {
+                    rotation: 25,
+                    y: -10,
+                    duration: 3,
+                    repeat: -1,
+                    yoyo: true,
+                    stagger: 0.3,
+                    ease: "sine.inOut"
+                });
+
+                gsap.to(".hero-orbit", {
+                    rotation: 360,
+                    duration: 65,
+                    repeat: -1,
+                    ease: "none"
+                });
+
+                // Scroll reveal for every section's content.
+                gsap.utils.toArray(".reveal").forEach(function (el) {
+                    gsap.from(el, {
+                        y: 40,
+                        opacity: 0,
+                        duration: 0.85,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 88%",
+                            once: true
+                        }
+                    });
+                });
+
+                // Trust strip stagger.
+                gsap.from(".trust-item", {
+                    y: 18,
+                    opacity: 0,
+                    duration: 0.65,
+                    stagger: 0.12,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".trust-strip",
+                        start: "top 90%",
+                        once: true
+                    }
+                });
+
+                // Category cards rise into view.
+                gsap.from(".category-card", {
+                    y: 55,
+                    opacity: 0,
+                    scale: 0.95,
+                    duration: 0.8,
+                    stagger: 0.14,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#categories",
+                        start: "top 75%",
+                        once: true
+                    }
+                });
+
+                // Menu cards stagger.
+                gsap.from(".food-item", {
+                    y: 45,
+                    opacity: 0,
+                    duration: 0.75,
+                    stagger: 0.12,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#foodGrid",
+                        start: "top 80%",
+                        once: true
+                    }
+                });
+
+                // Story images gently move on scroll.
+                gsap.to(".story-main-image img", {
+                    yPercent: -8,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".story-visual",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                });
+
+                gsap.to(".story-small-image", {
+                    y: -22,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".story-visual",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1.2
+                    }
+                });
+
+                // Quote text animation.
+                gsap.from(".quote-reveal", {
+                    y: 45,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".quote-section",
+                        start: "top 75%",
+                        once: true
+                    }
+                });
+
+                // Steps come in sequentially.
+                gsap.from(".step-card", {
+                    y: 35,
+                    opacity: 0,
+                    duration: 0.75,
+                    stagger: 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".steps-wrap",
+                        start: "top 78%",
+                        once: true
+                    }
+                });
+
+                // Gallery image reveal.
+                gsap.from(".gallery-item", {
+                    scale: 0.92,
+                   
+                    y: 22,
+                    duration: 0.75,
+                    stagger: 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".gallery-grid",
+                        start: "top 80%",
+                        once: true
+                    }
+                });
+
+                // CTA emphasis.
+                gsap.from(".cta-box", {
+                    scale: 0.96,
+                    
+                    duration: 0.9,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".cta-section",
+                        start: "top 85%",
+                        once: true
+                    }
+                });
+
+                // Footer columns.
+                gsap.from("footer .col-lg-4, footer .col-lg-2", {
+                    y: 25,
+                    opacity: 0,
+                    duration: 0.65,
+                    stagger: 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "footer",
+                        start: "top 90%",
+                        once: true
+                    }
+                });
+
+                // Section images subtly zoom as they enter.
+                gsap.utils.toArray(".journal-image img, .location-card img, .benefit-visual img").forEach(function (img) {
+                    gsap.from(img, {
+                        scale: 1.12,
+                        duration: 1.2,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top 90%",
+                            once: true
+                        }
+                    });
+                });
+
+                // Refresh layout-dependent triggers.
+                setTimeout(function () {
+                    ScrollTrigger.refresh();
+                }, 200);
+            }
+
+            // Start once the page's images have had a chance to load.
+            if (document.readyState === "complete") {
+                hidePreloader();
+            } else {
+                window.addEventListener("load", hidePreloader, { once: true });
+                // Do not leave the preloader indefinitely on slow connections.
+                setTimeout(hidePreloader, 2200);
+            }
+
+            /* --------------------------------------------------
+               3. 3D tilt interaction for cards
+            -------------------------------------------------- */
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                document.querySelectorAll(".tilt-card").forEach(function (card) {
+                    card.addEventListener("mousemove", function (event) {
+                        if (reduceMotion) return;
+
+                        const rect = card.getBoundingClientRect();
+                        const x = (event.clientX - rect.left) / rect.width;
+                        const y = (event.clientY - rect.top) / rect.height;
+                        const rotateY = (x - 0.5) * 7;
+                        const rotateX = (0.5 - y) * 7;
+
+                        if (window.gsap) {
+                            gsap.to(card, {
+                                rotateX: rotateX,
+                                rotateY: rotateY,
+                                transformPerspective: 850,
+                                duration: 0.35,
+                                ease: "power2.out"
+                            });
+                        }
+                    });
+
+                    card.addEventListener("mouseleave", function () {
+                        if (window.gsap) {
+                            gsap.to(card, {
+                                rotateX: 0,
+                                rotateY: 0,
+                                duration: 0.5,
+                                ease: "power2.out"
+                            });
+                        }
+                    });
+                });
+            }
+
+            /* --------------------------------------------------
+               4. Menu filter
+            -------------------------------------------------- */
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const foodItems = document.querySelectorAll(".food-item");
+
+            filterButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    filterButtons.forEach(function (btn) {
+                        btn.classList.remove("active");
+                    });
+
+                    button.classList.add("active");
+
+                    const filter = button.dataset.filter;
+
+                    foodItems.forEach(function (item) {
+                        const categories = (item.dataset.category || "").split(" ");
+                        const show = filter === "all" || categories.includes(filter);
+
+                        if (show) {
+                            item.classList.remove("menu-card-hidden");
+
+                            if (window.gsap && !reduceMotion) {
+                                gsap.fromTo(item,
+                                    { opacity: 0, y: 20, scale: 0.97 },
+                                    { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power2.out" }
+                                );
+                            }
+                        } else {
+                            item.classList.add("menu-card-hidden");
+                        }
+                    });
+
+                    if (window.ScrollTrigger) {
+                        ScrollTrigger.refresh();
+                    }
+                });
+            });
+
+            /* --------------------------------------------------
+               5. Demo add-to-cart
+            -------------------------------------------------- */
+            function showToast(message) {
+                toast.textContent = message;
+
+                if (window.gsap && !reduceMotion) {
+                    gsap.killTweensOf(toast);
+                    gsap.to(toast, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+
+                    clearTimeout(toastTimer);
+                    toastTimer = setTimeout(function () {
+                        gsap.to(toast, {
+                            opacity: 0,
+                            y: 15,
+                            duration: 0.3,
+                            ease: "power2.in"
+                        });
+                    }, 2500);
+                } else {
+                    toast.style.opacity = "1";
+                    toast.style.transform = "translateY(0)";
+
+                    clearTimeout(toastTimer);
+                    toastTimer = setTimeout(function () {
+                        toast.style.opacity = "0";
+                        toast.style.transform = "translateY(15px)";
+                    }, 2500);
+                }
+            }
+
+            document.querySelectorAll(".add-btn").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const name = button.dataset.name || "Meal";
+                    cartItems.push(name);
+                    cartCount.textContent = cartItems.length;
+
+                    if (window.gsap && !reduceMotion) {
+                        gsap.fromTo(cartButton,
+                            { scale: 0.8, rotation: -8 },
+                            { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }
+                        );
+
+                        gsap.fromTo(cartCount,
+                            { scale: 1.5 },
+                            { scale: 1, duration: 0.35, ease: "back.out(2)" }
+                        );
+                    }
+
+                    showToast(name + " added to your demo basket.");
+                });
+            });
+
+            cartButton.addEventListener("click", function () {
+                if (cartItems.length === 0) {
+                    showToast("Your demo basket is empty. Add a sample dish first.");
+                    return;
+                }
+
+                const summary = cartItems.reduce(function (acc, name) {
+                    acc[name] = (acc[name] || 0) + 1;
+                    return acc;
+                }, {});
+
+                const lines = Object.keys(summary).map(function (name) {
+                    return name + " × " + summary[name];
+                });
+
+                showToast("Demo basket: " + lines.join(", ") + ". No order has been placed.");
+            });
+
+            /* --------------------------------------------------
+               6. Favourite hearts
+            -------------------------------------------------- */
+            document.querySelectorAll(".food-heart").forEach(function (button) {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    button.classList.toggle("liked");
+
+                    const icon = button.querySelector("i");
+                    if (icon) {
+                        icon.classList.toggle("fa-regular");
+                        icon.classList.toggle("fa-solid");
+                    }
+
+                    showToast(button.classList.contains("liked")
+                        ? "Added to your favourites."
+                        : "Removed from your favourites.");
+                });
+            });
+
+            /* --------------------------------------------------
+               7. Back to top and navbar effects
+            -------------------------------------------------- */
+            function handleScroll() {
+                const show = window.scrollY > 450;
+                backTop.classList.toggle("visible", show);
+
+                const navbar = document.getElementById("mainNav");
+                if (navbar) {
+                    navbar.style.boxShadow = window.scrollY > 20
+                        ? "0 8px 28px rgba(22,65,43,.08)"
+                        : "none";
+                }
+            }
+
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            handleScroll();
+
+            backTop.addEventListener("click", function () {
+                if (window.gsap && window.ScrollToPlugin && !reduceMotion) {
+                    gsap.to(window, {
+                        duration: 0.8,
+                        scrollTo: 0,
+                        ease: "power3.inOut"
+                    });
+                } else {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+            });
+
+            /* --------------------------------------------------
+               8. Smooth in-page navigation
+            -------------------------------------------------- */
+            document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    const targetId = link.getAttribute("href");
+
+                    if (!targetId || targetId === "#") return;
+
+                    const target = document.querySelector(targetId);
+                    if (!target) return;
+
+                    event.preventDefault();
+
+                    // Close mobile menu after navigation.
+                    const navMenu = document.getElementById("navMenu");
+                    if (navMenu && navMenu.classList.contains("show") && window.bootstrap) {
+                        bootstrap.Collapse.getOrCreateInstance(navMenu).hide();
+                    }
+
+                    if (window.gsap && window.ScrollToPlugin && !reduceMotion) {
+                        gsap.to(window, {
+                            duration: 0.8,
+                            scrollTo: {
+                                y: target,
+                                offsetY: 82
+                            },
+                            ease: "power3.inOut"
+                        });
+                    } else {
+                        target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                });
+            });
+
+            /* --------------------------------------------------
+               9. Broken image fallback
+            -------------------------------------------------- */
+            document.querySelectorAll("img").forEach(function (img) {
+                img.addEventListener("error", function () {
+                    img.style.opacity = "0.35";
+                    img.alt = img.alt + " (image unavailable)";
+                    img.style.backgroundColor = "#dfe9dc";
+                }, { once: true });
+            });
+        });
+    </script>
+</body>
+</html>
+ 
